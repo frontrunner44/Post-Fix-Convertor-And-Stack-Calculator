@@ -6,15 +6,34 @@
 	<script src="scripts/jquery-3.1.1.min.js"></script>
 </head>
 <body>
-	<div id="container">
-		<h1 id="title">Calculator</h1>
-		<p>A JavaScript Post-Fix Convertor & Stack Calculator</p>
-    <input id="equation"></input>
-    <button>Calculate</button>
-		
+	<div id="wrapper">
+		<div id="top-container">
+			
+			<div id="top-header-section">
+				<h1 id="title">JavaScript Stack-Based Calculator</h1>
+				<p>Infix -> Postfix -> Calculate</p>
+			</div>
+
+			<input id="equation"></input>
+			<button>Calculate</button>
+			<p>Postfix Expression: <span id="expression"></span> <br />Calculated Result: <span id="scount"></span></p>
+		</div>
+
+		<div id="main-content">
+			<table class="customTable" id="convert-steps">
+				<thead>
+					<tr>
+						<th>Step</th>
+						<th>Current Value</th>
+						<th>Operator Stack</th>
+						<th>Stack</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
 	</div>
-	<h1 id="score">Post-Fixed Version: <span id="expression"></span></h1>
-	<h1 id="score">Calculated Result: <span id="scount"></span></h1>
 	<script src="scripts/scripts.js"></script>
 </body>
 </html>

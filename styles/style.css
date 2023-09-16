@@ -1,6 +1,30 @@
 body {
+  background: linear-gradient(141deg, #000 0%, #22244C 100%);
+    font-family:Cambria;
+}
+
+#top-container {
   text-align:center;
-  background-color: #403f3f;
+}
+
+/*
+div {
+  outline: 1px solid red;
+}
+*/
+
+#wrapper {
+  margin-top:2%;
+  height:90%;
+  width: 70%;
+  margin-left:auto;
+  margin-right:auto;
+  background: rgba( 255, 255, 255, 0.15 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 6.5px );
+  -webkit-backdrop-filter: blur( 6.5px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 #grid {
@@ -9,41 +33,26 @@ body {
   float: left;
 }
 
-#container {
-  display: inline-block;
-}
-
-#rules {
-  float:left;  
-  border: 5px solid white;
-  width: 500px;
-  min-height: 398px;
-  margin-right: 20px;
-  background-color: white;
-}
-
 ul {
   text-align: left;
   list-style: none;
+  color:white;
 }
 
 li {
   margin-bottom: 10px;
   border-bottom: 1px solid #e6e5e5;
+  color: white;
 }
 
 #title {
-  color: white;
   margin-bottom: 0px;
-}
-
-#score {
   color: white;
 }
 
 p {
-  color: white;
   margin-top: 5px;
+  color:white
 }
 
 button {
@@ -53,8 +62,44 @@ button {
 .cell {
   width: 15px;
   height: 15px;
-  background-color: grey;
   float: left;
   border-style: outset;
   border-width: 2px;
+}
+
+h1 {
+  color:white;
+  font-size:larger;
+}
+
+table.customTable {
+  width: 35%;
+  background-color: #201f1f;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #F6F8F6;
+  border-style:groove;
+  color: #FFF9F7;
+  margin-left:1%
+}
+
+table.customTable td {
+  border-width: 1px;
+  border-color: #F6F8F6;
+  border-style: groove;
+  padding: 5px;
+  background-color:#201f1f
+}
+
+table.customTable th {
+  background-color:#000000;
+  padding:5px;
+  border-style:groove;
+  border-width:1px;
+  border-color:#201f1f;
+  color:#ffffff
+}
+
+td:nth-child(odd) {
+  background-color:rgb(37, 36, 36);
 }

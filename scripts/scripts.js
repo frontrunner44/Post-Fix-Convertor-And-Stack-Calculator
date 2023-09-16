@@ -1,22 +1,19 @@
-const pattern = /(\d+\.\d+|\d+|\+|\-|\*|\^|\/|\(|\))/g;
+const pattern = /(\d+\.\d+|\d+|(?<=\D|^)-\d+|\+|\-|x|\^|\/|\(|\))/g;
 const operators = ["+", "-", "*", "/", "^"];
+let table = document.getElementById("convert-steps");
 
 $("button").click(function(){
 	const equation = document.getElementById('equation').value
 	let workingEquation = equation.match(pattern);
-	// send workingEquation to the function to convert to new type of equation, then that function calls the function to process and calculate.
 	$("#scount").html(postFixConversion(workingEquation));
 });
 
 function postFixConversion(postFixThis) {
     let postFixEquation = [];
     let stack = [];
-    let step = 1;
+    let step = 0;
     postFixThis.forEach(value => {
-        console.log(`Step ${step++} of conversion.`);
-        console.log(`Current Value: ${value}`);
-        console.log(`Current Stack: ${stack}`);
-        console.log(`Current expression: ${postFixEquation}`);
+      generateTable(value);
         if(operators.includes(value)) { // If the current index is an operator
            while(opEval(value) <= opEval(stack[stack.length-1])) { // If the operator at the top of the stack is equal or higher importance. No need to check if it's empty, because that will return -1.
                 if(value !== "^") {
@@ -36,12 +33,13 @@ function postFixConversion(postFixThis) {
                 }
             stack.pop();
         }
-
     });
     while(stack.length >= 1) { // Finish popping any left over operators from the operator stack to the expression.
+        generateTable(" ");
         postFixEquation.push(stack.pop());
     }
-    $("#expression").html(postFixEquation); // Puts the finished post-fixed expression onto the page.
+    $("#expression").html("<b>"+postFixEquation+"</b>"); // Puts the finished post-fixed expression onto the page.
+    generateTable(" ");
     postFixEquation.forEach(value => {
         if(operators.includes(value)) {
             runCalc(value);
@@ -79,6 +77,23 @@ function postFixConversion(postFixThis) {
                 break;
         }
 
+    }
+
+    function generateTable(value) {
+      step++;
+      let row = table.insertRow(-1);
+      let cell1 = row.insertCell(-1);
+      let cell2 = row.insertCell(-1);
+      let cell3 = row.insertCell(-1);
+      let cell4 = row.insertCell(-1);
+      cell1.innerHTML = step;
+      cell2.innerHTML = value;
+      cell3.innerHTML = stack;
+      cell4.innerHTML = postFixEquation;
+      console.log(`Current Value: ${value}`);
+      console.log(`Current Stack: ${stack}`);
+      console.log(`Current expression: ${postFixEquation}`);
+      console.log(`Step ${step} of conversion.`);
     }
 
 }
