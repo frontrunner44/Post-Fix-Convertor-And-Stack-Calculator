@@ -1,4 +1,4 @@
-const pattern = /(\d+\.\d+|\d+|(?<=\D|^)-\d+|\+|\-|x|\^|\/|\(|\))/g;
+const pattern = /(\d+\.\d+|\d+|(?<=\))-|(?<=\D|^)-\d+|\+|\-|\*|\^|\/|\(|\))/g;
 const operators = ["+", "-", "*", "/", "^"];
 let table = document.getElementById("convert-steps");
 
