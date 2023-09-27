@@ -4,9 +4,18 @@ let table = document.getElementById("convert-steps");
 
 $("button").click(function(){
 	const equation = document.getElementById('equation').value
-	let workingEquation = equation.match(pattern);
+	let workingEquation = exponentFix(equation.match(pattern));
 	$("#scount").html(postFixConversion(workingEquation));
 });
+
+function exponentFix(workingEquation) {
+    for(i = 0; i < workingEquation.length; i++) {
+        if(workingEquation[i] === "^" && workingEquation[i-1] === ")" && workingEquation[i-2] < 0) {
+            workingEquation[i-2] /= -1; // Convert to positive
+        }
+    }
+    return workingEquation;
+}
 
 function postFixConversion(postFixThis) {
     let postFixEquation = [];
@@ -54,7 +63,8 @@ function postFixConversion(postFixThis) {
         let num1 = stack.pop();
         switch(op) {
             case "^":
-                stack.push(num1**num2);
+                case "^":
+                num1 < 0 ? stack.push(-(num1 ** num2)) : stack.push(num1 ** num2);
                 break;
             case "*":
                 stack.push(num1*num2);
